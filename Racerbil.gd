@@ -27,6 +27,7 @@ func input_key():
 		apply_central_impulse(Vector2(0, HASTIGHED).rotated(rotation))
 		
 	linear_damp = FRIKTION
+	angular_damp = 5.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Racerspil.gd" type="Script" id=1]
 [ext_resource path="res://Baggrund.tres" type="TileSet" id=2]
 [ext_resource path="res://Asfalt.tres" type="TileSet" id=3]
-[ext_resource path="res://Grafik/Biler/Bil_sort.png" type="Texture" id=4]
+[ext_resource path="res://Grafik/Biler/Bil_roed.png" type="Texture" id=4]
 [ext_resource path="res://Racerbil.gd" type="Script" id=5]
+[ext_resource path="res://Kegle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Tree.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Tree-small.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 35.5, 57 )
@@ -23,7 +26,7 @@ cell_size = Vector2( 128, 128 )
 cell_quadrant_size = 1
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( 65537, -1610612676, 0, 65538, -1610612664, 0, 65539, -1610612664, 0, 65540, -1610612664, 0, 65541, -1610612664, 0, 65542, -1610612691, 0, 65543, 23, 0, 65544, 23, 0, 65545, 23, 0, 65546, 1610612803, 0, 65547, -1610612674, 0, 131073, 72, 0, 131083, -1610612668, 0, 131084, 1610612791, 0, 196609, 72, 0, 196612, -1073741772, 0, 196613, -1073741752, 0, 196614, -1073741752, 0, 196615, 1610612796, 0, 196619, -1073741757, 0, 262145, 72, 0, 262148, 72, 0, 262149, 62, 0, 262150, 67, 0, 262151, -1073741764, 0, 262155, -1073741757, 0, 327681, 72, 0, 327684, 72, 0, 327685, -1610612669, 0, 327691, -1073741757, 0, 393217, 72, 0, 393220, 72, 0, 393221, -1610612669, 0, 393227, -1073741760, 0, 458753, 60, 0, 458754, 67, 0, 458755, 67, 0, 458756, 50, 0, 458757, -1073741762, 0, 458758, 67, 0, 458759, 67, 0, 458760, 67, 0, 458761, 67, 0, 458762, 67, 0, 458763, 1610612798, 0, 917511, 50, 0, 917513, 43, 0 )
+tile_data = PoolIntArray( 65537, -1610612676, 0, 65538, -1610612664, 0, 65539, -1610612664, 0, 65540, -1610612664, 0, 65541, -1610612664, 0, 65542, -1610612691, 0, 65543, 23, 0, 65544, 23, 0, 65545, 23, 0, 65546, 1610612803, 0, 65547, -1610612674, 0, 131073, 72, 0, 131083, -1610612668, 0, 131084, 1610612791, 0, 131085, 42, 0, 196609, 72, 0, 196612, -1073741772, 0, 196613, -1073741752, 0, 196614, -1073741752, 0, 196615, 1610612796, 0, 196619, -1073741757, 0, 196620, 56, 0, 196621, 51, 0, 262145, 72, 0, 262148, 72, 0, 262149, 62, 0, 262150, 67, 0, 262151, -1073741764, 0, 262155, -1073741757, 0, 262156, 74, 0, 262157, 51, 0, 327681, 72, 0, 327684, 72, 0, 327685, -1610612669, 0, 327691, -1073741757, 0, 327692, 56, 0, 327693, 51, 0, 393217, 72, 0, 393220, 72, 0, 393221, -1610612669, 0, 393227, -1073741760, 0, 393228, 55, 0, 393229, 41, 0, 458753, 60, 0, 458754, 67, 0, 458755, 67, 0, 458756, 50, 0, 458757, -1073741762, 0, 458758, 67, 0, 458759, 67, 0, 458760, 67, 0, 458761, 67, 0, 458762, 67, 0, 458763, 1610612798, 0 )
 
 [node name="Racerbil" type="RigidBody2D" parent="."]
 position = Vector2( 959, 194 )
@@ -40,3 +43,22 @@ texture = ExtResource( 4 )
 position = Vector2( 1, 1 )
 scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="Racerbil"]
+offset = Vector2( 0, 100 )
+current = true
+zoom = Vector2( 4, 4 )
+process_mode = 0
+
+[node name="Forhindringer" type="Node2D" parent="."]
+
+[node name="Kegle" parent="Forhindringer" instance=ExtResource( 6 )]
+position = Vector2( 635, 191 )
+
+[node name="RigidBody2D" parent="Forhindringer" instance=ExtResource( 7 )]
+position = Vector2( 322, 820 )
+mode = 1
+
+[node name="RigidBody2D2" parent="Forhindringer" instance=ExtResource( 8 )]
+position = Vector2( 1627, 147 )
+mode = 1
