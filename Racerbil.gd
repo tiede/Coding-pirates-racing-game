@@ -1,8 +1,11 @@
 extends RigidBody2D
 
-var STYRING = 50.0
-var HASTIGHED = 5.0
-var FRIKTION = 2.0
+export var STYRING = 50.0
+export var HASTIGHED = 5.0
+export var FRIKTION = 2.0
+
+export var ZOOM = 0.5
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -15,6 +18,7 @@ func _ready():
 
 func _physics_process(delta):
 	input_key()
+	bil_kamera()
 	
 func input_key():
 	if Input.is_action_pressed("Venstre"):
@@ -30,5 +34,10 @@ func input_key():
 	angular_damp = 5.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	pass
+	#bil_kamera()
+
+func bil_kamera():
+	var zoomFaktor = ZOOM + linear_velocity.length() / 1000
+	$Camera2D.zoom = lerp($Camera2D.zoom, Vector2(zoomFaktor, zoomFaktor), 0.01)
