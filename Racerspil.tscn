@@ -67,3 +67,8 @@ shape = SubResource( 1 )
 offset = Vector2( 0, 100 )
 current = true
 process_mode = 0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+build_mode = 1
