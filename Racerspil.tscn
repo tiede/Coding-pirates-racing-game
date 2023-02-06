@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Racerspil.gd" type="Script" id=1]
 [ext_resource path="res://Baggrund.tres" type="TileSet" id=2]
@@ -9,9 +9,26 @@
 [ext_resource path="res://Tree.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Tree-small.tscn" type="PackedScene" id=8]
 [ext_resource path="res://OliePlet.tscn" type="PackedScene" id=9]
+[ext_resource path="res://COOPBL.TTF" type="DynamicFontData" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 35.5, 57 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0.705882 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 0, 0, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 10 )
 
 [node name="Racerspil" type="Node2D"]
 script = ExtResource( 1 )
@@ -68,7 +85,19 @@ offset = Vector2( 0, 100 )
 current = true
 process_mode = 0
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
+offset = Vector2( 60, 40 )
+transform = Transform2D( 1, 0, 0, 1, 60, 40 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-build_mode = 1
+[node name="Ramme" type="Panel" parent="HUD"]
+margin_right = 300.0
+margin_bottom = 80.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Omgang1" type="Label" parent="HUD"]
+margin_left = 25.6
+margin_top = 27.2
+margin_right = 265.6
+margin_bottom = 55.6
+custom_fonts/font = SubResource( 3 )
+text = "XXXXXXXXXXXXXXX"
