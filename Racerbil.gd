@@ -6,11 +6,9 @@ export var FRIKTION = 2.0
 
 export var ZOOM = 0.5
 
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,3 +39,8 @@ func _process(delta):
 func bil_kamera():
 	var zoomFaktor = ZOOM + linear_velocity.length() / 1000
 	$Camera2D.zoom = lerp($Camera2D.zoom, Vector2(zoomFaktor, zoomFaktor), 0.01)
+
+
+func _on_Start_body_entered(body):
+	if body.is_in_group('Spiller'):
+		get_parent().start_passeret()

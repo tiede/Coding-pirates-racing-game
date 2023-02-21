@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Racerspil.gd" type="Script" id=1]
 [ext_resource path="res://Baggrund.tres" type="TileSet" id=2]
@@ -30,10 +30,14 @@ corner_radius_bottom_left = 20
 size = 20
 font_data = ExtResource( 10 )
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 20, 51.5 )
+
 [node name="Racerspil" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="TileMap_Baggrund" type="TileMap" parent="."]
+visible = false
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 128, 128 )
 cell_quadrant_size = 1
@@ -44,14 +48,15 @@ tile_data = PoolIntArray( 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 128, 128 )
 cell_quadrant_size = 1
+show_collision = true
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( 65537, -1610612676, 0, 65538, -1610612664, 0, 65539, -1610612664, 0, 65540, -1610612664, 0, 65541, -1610612664, 0, 65542, -1610612691, 0, 65543, 23, 0, 65544, 23, 0, 65545, 23, 0, 65546, 1610612803, 0, 65547, -1610612674, 0, 131073, 72, 0, 131083, -1610612668, 0, 131084, 1610612791, 0, 131085, 42, 0, 196609, 72, 0, 196612, -1073741772, 0, 196613, -1073741752, 0, 196614, -1073741752, 0, 196615, 1610612796, 0, 196619, -1073741757, 0, 196620, 56, 0, 196621, 51, 0, 262145, 72, 0, 262148, 72, 0, 262149, 62, 0, 262150, 67, 0, 262151, -1073741764, 0, 262155, -1073741757, 0, 262156, 74, 0, 262157, 51, 0, 327681, 72, 0, 327684, 72, 0, 327685, -1610612669, 0, 327691, -1073741757, 0, 327692, 56, 0, 327693, 51, 0, 393217, 72, 0, 393220, 72, 0, 393221, -1610612669, 0, 393227, -1073741760, 0, 393228, 55, 0, 393229, 41, 0, 458753, 60, 0, 458754, 67, 0, 458755, 67, 0, 458756, 50, 0, 458757, -1073741762, 0, 458758, 67, 0, 458759, 67, 0, 458760, 67, 0, 458761, 67, 0, 458762, 67, 0, 458763, 1610612798, 0 )
+tile_data = PoolIntArray( 65537, -1610612676, 0, 65538, 67, 0, 65539, 67, 0, 65540, 67, 0, 65541, 67, 0, 65542, -1610612691, 0, 65543, 23, 0, 65544, 23, 0, 65545, 23, 0, 65546, 1610612803, 0, 65547, -1610612674, 0, 131073, 72, 0, 131083, -1610612668, 0, 131084, 1610612791, 0, 131085, 42, 0, 196609, 72, 0, 196612, -1073741772, 0, 196613, -1073741752, 0, 196614, -1073741752, 0, 196615, 1610612796, 0, 196619, -1073741757, 0, 196620, 56, 0, 196621, 51, 0, 262145, 72, 0, 262148, 72, 0, 262149, 62, 0, 262150, 67, 0, 262151, -1073741764, 0, 262155, -1073741757, 0, 262156, 74, 0, 262157, 51, 0, 327681, 72, 0, 327684, 72, 0, 327685, -1610612669, 0, 327691, -1073741757, 0, 327692, 56, 0, 327693, 51, 0, 393217, 72, 0, 393220, 72, 0, 393221, -1610612669, 0, 393227, -1073741760, 0, 393228, 55, 0, 393229, 41, 0, 458753, 60, 0, 458754, 67, 0, 458755, 67, 0, 458756, 50, 0, 458757, -1073741762, 0, 458758, 67, 0, 458759, 67, 0, 458760, 67, 0, 458761, 67, 0, 458762, 67, 0, 458763, 1610612798, 0 )
 
 [node name="Forhindringer" type="Node2D" parent="."]
 
 [node name="Kegle" parent="Forhindringer" instance=ExtResource( 6 )]
-position = Vector2( 635, 191 )
+position = Vector2( 603, 192 )
 
 [node name="StortTrae" parent="Forhindringer" instance=ExtResource( 7 )]
 position = Vector2( 322, 820 )
@@ -64,7 +69,7 @@ mode = 1
 [node name="Olieplet" parent="Forhindringer" instance=ExtResource( 9 )]
 position = Vector2( 1474, 608 )
 
-[node name="Racerbil" type="RigidBody2D" parent="."]
+[node name="Racerbil" type="RigidBody2D" parent="." groups=["Spiller"]]
 position = Vector2( 959, 194 )
 rotation = -1.5708
 gravity_scale = 0.0
@@ -72,12 +77,12 @@ script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="Racerbil"]
 position = Vector2( -1, 1 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Racerbil"]
 position = Vector2( 1, 1 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.3, 0.3 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="Racerbil"]
@@ -91,7 +96,7 @@ transform = Transform2D( 1, 0, 0, 1, 60, 40 )
 
 [node name="Ramme" type="Panel" parent="HUD"]
 margin_right = 300.0
-margin_bottom = 80.0
+margin_bottom = 144.0
 custom_styles/panel = SubResource( 2 )
 
 [node name="Omgang1" type="Label" parent="HUD"]
@@ -100,4 +105,25 @@ margin_top = 27.2
 margin_right = 265.6
 margin_bottom = 55.6
 custom_fonts/font = SubResource( 3 )
-text = "XXXXXXXXXXXXXXX"
+
+[node name="Omgang2" type="Label" parent="HUD"]
+margin_left = 27.0
+margin_top = 68.0
+margin_right = 267.0
+margin_bottom = 96.4
+custom_fonts/font = SubResource( 3 )
+
+[node name="Omgang3" type="Label" parent="HUD"]
+margin_left = 30.0
+margin_top = 108.0
+margin_right = 270.0
+margin_bottom = 136.4
+custom_fonts/font = SubResource( 3 )
+
+[node name="Start" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Start"]
+position = Vector2( 844, 192.5 )
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="Start" to="Racerbil" method="_on_Start_body_entered"]
