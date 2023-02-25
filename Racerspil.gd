@@ -24,6 +24,10 @@ func _process(delta):
 	elif omgang == 3:
 		omgangstid += delta
 		$HUD/Omgang3.text = 'Omgang 3: ' + str(omgangstid).pad_zeros(3).left(7)
+	elif omgang > 3:
+		# Spillet er slut - vi skal lave game over skærm
+		pass
+		
 	
 func start_passeret():
 	omgang = omgang + 1

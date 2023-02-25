@@ -43,4 +43,5 @@ func bil_kamera():
 
 func _on_Start_body_entered(body):
 	if body.is_in_group('Spiller'):
-		get_parent().start_passeret()
+		var root = get_node("/root/Racerspil")
+		root.start_passeret()
