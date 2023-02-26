@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Racerspil.gd" type="Script" id=1]
 [ext_resource path="res://Baggrund.tres" type="TileSet" id=2]
@@ -40,6 +40,31 @@ font_data = ExtResource( 10 )
 [sub_resource type="DynamicFont" id=6]
 size = 20
 font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.2, 0.564706, 0.27451, 1 )
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.2, 0.564706, 0.27451, 1 )
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.2, 0.564706, 0.27451, 1 )
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
 
 [node name="Racerspil" type="Node2D"]
 script = ExtResource( 1 )
@@ -156,4 +181,16 @@ margin_right = 1181.0
 margin_bottom = 441.0
 custom_fonts/font = SubResource( 6 )
 
+[node name="Start" type="Button" parent="Gameover"]
+margin_left = 940.0
+margin_top = 449.0
+margin_right = 1041.0
+margin_bottom = 473.0
+custom_fonts/font = SubResource( 8 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 7 )
+text = "Start igen"
+
 [connection signal="body_entered" from="Start" to="Racerbil" method="_on_Start_body_entered"]
+[connection signal="pressed" from="Gameover/Start" to="." method="_on_Start_pressed"]

@@ -40,3 +40,7 @@ func start_passeret():
 
 func hent_omgangstid(omgangstid):
 	return str(omgangstid).pad_zeros(3).left(7)
+
+
+func _on_Start_pressed():
+	get_tree().reload_current_scene()
