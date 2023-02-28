@@ -159,6 +159,7 @@ position = Vector2( 844, 192.5 )
 shape = SubResource( 4 )
 
 [node name="Gameover" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Panel" type="Panel" parent="Gameover"]
 margin_left = 730.0
