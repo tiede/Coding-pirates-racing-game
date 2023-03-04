@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Racerspil.gd" type="Script" id=1]
 [ext_resource path="res://Baggrund.tres" type="TileSet" id=2]
@@ -65,6 +65,9 @@ expand_margin_left = 6.0
 expand_margin_right = 6.0
 expand_margin_top = 6.0
 expand_margin_bottom = 6.0
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 66, 11.25 )
 
 [node name="Racerspil" type="Node2D"]
 script = ExtResource( 1 )
@@ -193,5 +196,29 @@ custom_styles/pressed = SubResource( 10 )
 custom_styles/normal = SubResource( 7 )
 text = "Start igen"
 
+[node name="Mellemtid1" type="Area2D" parent="."]
+position = Vector2( 192, 601 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mellemtid1"]
+position = Vector2( 1, 2 )
+shape = SubResource( 11 )
+
+[node name="Mellemtid2" type="Area2D" parent="."]
+position = Vector2( 704, 771 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mellemtid2"]
+position = Vector2( 1, -1 )
+shape = SubResource( 11 )
+
+[node name="Mellemtid3" type="Area2D" parent="."]
+position = Vector2( 704, 771 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mellemtid3"]
+position = Vector2( 769, -270 )
+shape = SubResource( 11 )
+
 [connection signal="body_entered" from="Start" to="Racerbil" method="_on_Start_body_entered"]
 [connection signal="pressed" from="Gameover/Start" to="." method="_on_Start_pressed"]
+[connection signal="body_entered" from="Mellemtid1" to="." method="_on_Mellemtid1_body_entered"]
+[connection signal="body_entered" from="Mellemtid2" to="." method="_on_Mellemtid2_body_entered"]
+[connection signal="body_entered" from="Mellemtid3" to="." method="_on_Mellemtid3_body_entered"]
