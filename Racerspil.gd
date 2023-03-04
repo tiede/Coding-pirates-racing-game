@@ -34,7 +34,6 @@ func _process(delta):
 		
 		$Gameover/Tider.text = omgangstider_text + "\n" + "Total tid : " + hent_omgangstid(total_tid)
 
-		
 func start_passeret():
 	if omgang == 0:
 		omgang = 1
@@ -65,7 +64,6 @@ func _on_Mellemtid3_body_entered(body):
 	mellemtid_passeret(body)
 
 func check_snyd():
-	print(mellemtider_passeret)
 	return mellemtider_passeret == 3
 
 func mellemtid_passeret(body):
