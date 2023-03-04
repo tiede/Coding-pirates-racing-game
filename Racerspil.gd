@@ -64,8 +64,9 @@ func _on_Mellemtid3_body_entered(body):
 	mellemtid_passeret(body)
 
 func check_snyd():
-	return mellemtider_passeret == 3
+	return mellemtider_passeret >= 3
 
 func mellemtid_passeret(body):
 	if body.is_in_group('Spiller'):
 		mellemtider_passeret += 1
+		print ("Mellemtider passeret " + str(mellemtider_passeret))
