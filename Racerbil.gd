@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 export var STYRING = 50.0
-export var HASTIGHED = 5.0
+export var HASTIGHED = 10.0
 export var FRIKTION = 2.0
 
 export var ZOOM = 0.5
@@ -45,3 +45,11 @@ func _on_Start_body_entered(body):
 	if body.is_in_group('Spiller'):
 		var root = get_node("/root/Racerspil")
 		root.start_passeret()
+
+
+func _on_Olieplet_body_entered(body):
+	if body.is_in_group('Spiller'):
+		print("olieplet hit")
+		#apply_impulse(Vector2(0,0), Vector2(200,200))
+		apply_central_impulse(Vector2(0, -300).rotated(rotation))
+		apply_torque_impulse(5000.0)
