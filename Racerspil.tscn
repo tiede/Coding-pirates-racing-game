@@ -90,7 +90,7 @@ tile_data = PoolIntArray( 65537, -1610612676, 0, 65538, 67, 0, 65539, 67, 0, 655
 
 [node name="Forhindringer" type="Node2D" parent="."]
 
-[node name="Kegle" parent="Forhindringer" instance=ExtResource( 6 )]
+[node name="Kegle" parent="Forhindringer" groups=["Forhindring"] instance=ExtResource( 6 )]
 position = Vector2( 603, 192 )
 
 [node name="StortTrae" parent="Forhindringer" instance=ExtResource( 7 )]
@@ -105,7 +105,7 @@ mode = 1
 position = Vector2( 1500, 854 )
 
 [node name="Racerbil" type="RigidBody2D" parent="." groups=["Spiller"]]
-position = Vector2( 959, 194 )
+position = Vector2( 958, 193 )
 rotation = -1.5708
 gravity_scale = 0.0
 script = ExtResource( 5 )
@@ -116,7 +116,7 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Racerbil"]
-position = Vector2( 1, 1 )
+position = Vector2( -1, 1 )
 scale = Vector2( 0.3, 0.3 )
 shape = SubResource( 1 )
 
@@ -124,6 +124,9 @@ shape = SubResource( 1 )
 offset = Vector2( 0, 100 )
 current = true
 process_mode = 0
+
+[node name="SkudPosition" type="Position2D" parent="Racerbil"]
+position = Vector2( -0.999863, -34 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 offset = Vector2( 60, 40 )

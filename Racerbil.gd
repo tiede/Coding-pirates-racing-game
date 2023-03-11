@@ -6,9 +6,7 @@ export var FRIKTION = 2.0
 
 export var ZOOM = 0.5
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var kugle_scene = preload("res://Kugle.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +25,8 @@ func input_key():
 		apply_central_impulse(Vector2(0, -HASTIGHED).rotated(rotation))
 	if Input.is_action_pressed("Bak"):
 		apply_central_impulse(Vector2(0, HASTIGHED).rotated(rotation))
+	if Input.is_action_just_pressed("Skyd"):
+		skyd()
 		
 	linear_damp = FRIKTION
 	angular_damp = 5.0
@@ -46,10 +46,13 @@ func _on_Start_body_entered(body):
 		var root = get_node("/root/Racerspil")
 		root.start_passeret()
 
-
 func _on_Olieplet_body_entered(body):
 	if body.is_in_group('Spiller'):
-		print("olieplet hit")
-		#apply_impulse(Vector2(0,0), Vector2(200,200))
 		apply_central_impulse(Vector2(0, -300).rotated(rotation))
 		apply_torque_impulse(5000.0)
+		
+func skyd():
+	var b = kugle_scene.instance()
+	owner.add_child(b)
+	b.transform = $SkudPosition.global_transform
+	
