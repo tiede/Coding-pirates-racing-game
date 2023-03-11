@@ -91,7 +91,15 @@ tile_data = PoolIntArray( 65537, -1610612676, 0, 65538, 67, 0, 65539, 67, 0, 655
 [node name="Forhindringer" type="Node2D" parent="."]
 
 [node name="Kegle" parent="Forhindringer" groups=["Forhindring"] instance=ExtResource( 6 )]
-position = Vector2( 603, 192 )
+position = Vector2( 605, 196 )
+
+[node name="Kegle2" parent="Forhindringer" groups=["Forhindring"] instance=ExtResource( 6 )]
+position = Vector2( 189, 304 )
+rotation = 3.14159
+
+[node name="Kegle3" parent="Forhindringer" groups=["Forhindring"] instance=ExtResource( 6 )]
+position = Vector2( 188, 869 )
+rotation = 3.14159
 
 [node name="StortTrae" parent="Forhindringer" instance=ExtResource( 7 )]
 position = Vector2( 322, 820 )
