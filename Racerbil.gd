@@ -8,13 +8,18 @@ export var ZOOM = 0.5
 
 var kugle_scene = preload("res://Kugle.tscn")
 
+var timer = 0
+var sidst_skudt = 0
+var TID_MELLEM_SKUD = 0.2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
+	
 func _physics_process(delta):
 	input_key()
 	bil_kamera()
+	timer += delta
 	
 func input_key():
 	if Input.is_action_pressed("Venstre"):
@@ -25,7 +30,7 @@ func input_key():
 		apply_central_impulse(Vector2(0, -HASTIGHED).rotated(rotation))
 	if Input.is_action_pressed("Bak"):
 		apply_central_impulse(Vector2(0, HASTIGHED).rotated(rotation))
-	if Input.is_action_just_pressed("Skyd"):
+	if Input.is_action_pressed("Skyd"):
 		skyd()
 		
 	linear_damp = FRIKTION
@@ -52,7 +57,8 @@ func _on_Olieplet_body_entered(body):
 		apply_torque_impulse(5000.0)
 		
 func skyd():
-	var b = kugle_scene.instance()
-	owner.add_child(b)
-	b.transform = $SkudPosition.global_transform
-	
+	if sidst_skudt == 0 || timer > sidst_skudt + TID_MELLEM_SKUD:
+		var b = kugle_scene.instance()
+		owner.add_child(b)
+		b.transform = $SkudPosition.global_transform
+		sidst_skudt = timer
