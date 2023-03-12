@@ -17,5 +17,5 @@ func ramt():
 	if antal_skud == 1:
 		$Sprite.texture = load("res://Grafik/Objekter/cone_down.png")
 	else:
-		visible = false
-		#queue_free()
+		#visible = false
+		queue_free()
