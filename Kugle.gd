@@ -18,5 +18,5 @@ func _physics_process(delta):
 func _on_Kugle_body_entered(body):
 	print_debug(body)
 	if body.is_in_group("Forhindring"):
-		body.queue_free()
+		body.ramt()
 	queue_free()
