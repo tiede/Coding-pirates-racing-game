@@ -39,12 +39,10 @@ func input_key():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	#bil_kamera()
 
 func bil_kamera():
 	var zoomFaktor = ZOOM + linear_velocity.length() / 1000
 	$Camera2D.zoom = lerp($Camera2D.zoom, Vector2(zoomFaktor, zoomFaktor), 0.01)
-
 
 func _on_Start_body_entered(body):
 	if body.is_in_group('Spiller'):
