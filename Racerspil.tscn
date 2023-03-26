@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Racerspil.gd" type="Script" id=1]
 [ext_resource path="res://Baggrund.tres" type="TileSet" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Tree-small.tscn" type="PackedScene" id=8]
 [ext_resource path="res://OliePlet.tscn" type="PackedScene" id=9]
 [ext_resource path="res://COOPBL.TTF" type="DynamicFontData" id=10]
+[ext_resource path="res://Grafik/rock-star-clipart-md.png" type="Texture" id=11]
+[ext_resource path="res://NyHiScore.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 35.5, 57 )
@@ -68,6 +70,50 @@ expand_margin_bottom = 6.0
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 66, 11.25 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 20
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "Vis hiscore"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1, 4.6, 6.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 1, 4.6, 6.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Panel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 1, 4.6, 6.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
 
 [node name="Racerspil" type="Node2D"]
 script = ExtResource( 1 )
@@ -174,7 +220,6 @@ position = Vector2( 844, 192.5 )
 shape = SubResource( 4 )
 
 [node name="Gameover" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Panel" type="Panel" parent="Gameover"]
 margin_left = 730.0
@@ -228,6 +273,42 @@ position = Vector2( 704, 771 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mellemtid3"]
 position = Vector2( 768, -506 )
 shape = SubResource( 11 )
+
+[node name="NyHiScore" type="CanvasLayer" parent="."]
+script = ExtResource( 12 )
+
+[node name="Panel" type="Panel" parent="NyHiScore"]
+modulate = Color( 0, 0, 0, 0.111111 )
+margin_left = 821.0
+margin_top = 459.0
+margin_right = 1182.0
+margin_bottom = 726.0
+
+[node name="Label" type="Label" parent="NyHiScore"]
+modulate = Color( 0.111111, 0.111111, 0.111111, 0.111111 )
+margin_left = 868.0
+margin_top = 496.0
+margin_right = 1128.0
+margin_bottom = 709.0
+custom_fonts/font = SubResource( 13 )
+text = "Hurra!
+
+Du har slået den eksisterende hurtigste omgangstid.
+
+Ny tid: %s
+Tidligere tid: %s"
+align = 1
+autowrap = true
+
+[node name="Sprite" type="Sprite" parent="NyHiScore"]
+modulate = Color( 1, 1, 1, 0.111111 )
+position = Vector2( 988, 276 )
+scale = Vector2( 0.567939, 0.567939 )
+texture = ExtResource( 11 )
+
+[node name="AnimationPlayerVisHiScore" type="AnimationPlayer" parent="."]
+root_node = NodePath("../NyHiScore")
+"anims/Vis hiscore" = SubResource( 12 )
 
 [connection signal="body_entered" from="Forhindringer/Olieplet" to="Racerbil" method="_on_Olieplet_body_entered"]
 [connection signal="body_entered" from="Start" to="Racerbil" method="_on_Start_body_entered"]

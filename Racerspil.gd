@@ -17,6 +17,7 @@ var FIL_NAVN_HI_SCORE_OMGANGSTID = "user://racing-hi-score-omgangstid.txt"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Gameover.visible = false
+	$NyHiScore.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -101,6 +102,8 @@ func gem_hi_score_i_fil():
 		hi_score_fil.open(FIL_NAVN_HI_SCORE_OMGANGSTID, File.WRITE)
 		hi_score_fil.store_float(hurtigste_omgang)
 		hi_score_fil.close()
+		
+		hi_score_slaaet(hurtigste_omgang, gemt_hi_score)
 
 func hent_hi_score_fra_fil():
 	var hi_score_fil = File.new()
@@ -109,3 +112,9 @@ func hent_hi_score_fra_fil():
 	else:
 		hi_score_fil.open(FIL_NAVN_HI_SCORE_OMGANGSTID, File.READ)
 		return hi_score_fil.get_float()
+
+func hi_score_slaaet(ny_hi_score, gammel_hi_score):
+	$AnimationPlayerVisHiScore.play("Vis hiscore")
+	$NyHiScore/Label.text = $NyHiScore/Label.text % [str(ny_hi_score), str(gammel_hi_score)]
+	 
+	$NyHiScore.visible = true
