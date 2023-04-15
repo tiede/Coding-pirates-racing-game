@@ -12,14 +12,17 @@ var timer = 0
 var sidst_skudt = 0
 var TID_MELLEM_SKUD = 0.2
 
+var spil_startet = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 	
 func _physics_process(delta):
-	input_key()
 	bil_kamera()
-	timer += delta
+	if (spil_startet):
+		input_key()
+		timer += delta
 	
 func input_key():
 	if Input.is_action_pressed("Venstre"):
@@ -60,3 +63,6 @@ func skyd():
 		owner.add_child(b)
 		b.transform = $SkudPosition.global_transform
 		sidst_skudt = timer
+
+func spil_startet():
+	spil_startet = true

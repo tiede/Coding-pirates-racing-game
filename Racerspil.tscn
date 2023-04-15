@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Racerspil.gd" type="Script" id=1]
 [ext_resource path="res://Baggrund.tres" type="TileSet" id=2]
@@ -74,6 +74,26 @@ extents = Vector2( 66, 11.25 )
 [sub_resource type="DynamicFont" id=13]
 size = 20
 font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 150
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=14]
+resource_name = "Start nedtaelling"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("StartSpil/LabelNedtaelling:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=12]
 resource_name = "Vis hiscore"
@@ -220,6 +240,7 @@ position = Vector2( 844, 192.5 )
 shape = SubResource( 4 )
 
 [node name="Gameover" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Panel" type="Panel" parent="Gameover"]
 margin_left = 730.0
@@ -275,17 +296,18 @@ position = Vector2( 768, -506 )
 shape = SubResource( 11 )
 
 [node name="NyHiScore" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource( 12 )
 
 [node name="Panel" type="Panel" parent="NyHiScore"]
-modulate = Color( 0, 0, 0, 0.111111 )
+modulate = Color( 0, 0, 0, 0.0149353 )
 margin_left = 821.0
 margin_top = 459.0
 margin_right = 1182.0
 margin_bottom = 726.0
 
 [node name="Label" type="Label" parent="NyHiScore"]
-modulate = Color( 0.111111, 0.111111, 0.111111, 0.111111 )
+modulate = Color( 0.0149353, 0.0149353, 0.0149353, 0.0149353 )
 margin_left = 868.0
 margin_top = 496.0
 margin_right = 1128.0
@@ -301,10 +323,23 @@ align = 1
 autowrap = true
 
 [node name="Sprite" type="Sprite" parent="NyHiScore"]
-modulate = Color( 1, 1, 1, 0.111111 )
+modulate = Color( 1, 1, 1, 0.0149353 )
 position = Vector2( 988, 276 )
 scale = Vector2( 0.567939, 0.567939 )
 texture = ExtResource( 11 )
+
+[node name="StartSpil" type="CanvasLayer" parent="."]
+
+[node name="LabelNedtaelling" type="Label" parent="StartSpil"]
+margin_left = 918.0
+margin_top = 509.0
+margin_right = 1051.0
+margin_bottom = 622.0
+custom_fonts/font = SubResource( 15 )
+text = "#"
+
+[node name="AnimationPlayerVisStartSpil" type="AnimationPlayer" parent="."]
+"anims/Start nedtaelling" = SubResource( 14 )
 
 [node name="AnimationPlayerVisHiScore" type="AnimationPlayer" parent="."]
 root_node = NodePath("../NyHiScore")

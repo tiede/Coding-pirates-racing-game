@@ -11,6 +11,7 @@ var omgangstid = 0
 var omgang = 0
 var omgangstider = []
 var mellemtider_passeret = 0
+var start_taeller = 3
 
 var FIL_NAVN_HI_SCORE_OMGANGSTID = "user://racing-hi-score-omgangstid.txt"
 
@@ -18,6 +19,8 @@ var FIL_NAVN_HI_SCORE_OMGANGSTID = "user://racing-hi-score-omgangstid.txt"
 func _ready():
 	$Gameover.visible = false
 	$NyHiScore.visible = false
+	
+	start_nedtaelling(str(3))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -118,3 +121,22 @@ func hi_score_slaaet(ny_hi_score, gammel_hi_score):
 	$NyHiScore/Label.text = $NyHiScore/Label.text % [str(ny_hi_score), str(gammel_hi_score)]
 	 
 	$NyHiScore.visible = true
+
+func start_nedtaelling(text):
+	$StartSpil/LabelNedtaelling.text = text
+	$AnimationPlayerVisStartSpil.play("Start nedtaelling")
+	$AnimationPlayerVisStartSpil.connect("animation_finished", self, "_on_nedtaelling_animation_ended")
+	
+func _on_nedtaelling_animation_ended(anim_name):
+	start_taeller = start_taeller - 1
+	
+	if (start_taeller == -1):
+		start_spil()
+	elif (start_taeller == 0):
+		start_nedtaelling("GO!")
+	else:
+		start_nedtaelling(str(start_taeller))
+	
+func start_spil():
+	$StartSpil.set_visible(false)
+	$Racerbil.spil_startet()
