@@ -15,6 +15,8 @@ var start_taeller = 3
 
 var FIL_NAVN_HI_SCORE_OMGANGSTID = "user://racing-hi-score-omgangstid.txt"
 
+var kegle_scene = preload("res://Kegle.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Gameover.visible = false
@@ -42,7 +44,9 @@ func start_passeret():
 			omgangstid = 0
 			mellemtider_passeret = 0
 		else:
-			print_debug('start passeret men mellemtider ikke passeret. Snyder du?')				
+			print_debug('start passeret men mellemtider ikke passeret. Snyder du?')
+	
+	spawn_forhindringer()
 	print('start passeret')
 	
 	if omgang > 3:
@@ -138,5 +142,31 @@ func _on_nedtaelling_animation_ended(anim_name):
 		start_nedtaelling(str(start_taeller))
 	
 func start_spil():
-	$StartSpil.set_visible(false)
+	$StartSpil.visible = false
 	$Racerbil.spil_startet()
+
+func spawn_forhindringer():
+	# Find 5 random spawn punkter
+	var brugte_numre = []
+	var kegler_placeret = 0
+	while (kegler_placeret <= 5):		
+		var rand = randi()%10+1
+		if (!brugte_numre.has(rand)):
+			brugte_numre.append(rand)
+			spawn_forhindring(rand)
+			kegler_placeret = kegler_placeret + 1
+
+func spawn_forhindring(spawn_position):
+	print_debug("Checker kegle i " + str(spawn_position))
+	for barn in $Forhindringer.get_children():
+		var spawn_punkt_navn = "Spawn" + str(spawn_position)
+		if (barn.name == spawn_punkt_navn):
+			print_debug("Laver kegle i " + spawn_punkt_navn)
+			var kegle = lav_kegle(barn.global_transform)
+			add_child(kegle)
+
+func lav_kegle(transform):
+	var kegle = kegle_scene.instance()
+	kegle.add_to_group("Forhindring")
+	kegle.transform = transform
+	return kegle

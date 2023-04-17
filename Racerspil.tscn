@@ -1,11 +1,10 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Racerspil.gd" type="Script" id=1]
 [ext_resource path="res://Baggrund.tres" type="TileSet" id=2]
 [ext_resource path="res://Asfalt.tres" type="TileSet" id=3]
 [ext_resource path="res://Grafik/Biler/Bil_roed.png" type="Texture" id=4]
 [ext_resource path="res://Racerbil.gd" type="Script" id=5]
-[ext_resource path="res://Kegle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Tree.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Tree-small.tscn" type="PackedScene" id=8]
 [ext_resource path="res://OliePlet.tscn" type="PackedScene" id=9]
@@ -157,17 +156,6 @@ tile_data = PoolIntArray( 65537, -1610612676, 0, 65538, 67, 0, 65539, 67, 0, 655
 
 [node name="Forhindringer" type="Node2D" parent="."]
 
-[node name="Kegle" parent="Forhindringer" groups=["Forhindring"] instance=ExtResource( 6 )]
-position = Vector2( 605, 196 )
-
-[node name="Kegle2" parent="Forhindringer" groups=["Forhindring"] instance=ExtResource( 6 )]
-position = Vector2( 189, 304 )
-rotation = 3.14159
-
-[node name="Kegle3" parent="Forhindringer" groups=["Forhindring"] instance=ExtResource( 6 )]
-position = Vector2( 188, 869 )
-rotation = 3.14159
-
 [node name="StortTrae" parent="Forhindringer" instance=ExtResource( 7 )]
 position = Vector2( 322, 820 )
 mode = 1
@@ -178,6 +166,36 @@ mode = 1
 
 [node name="Olieplet" parent="Forhindringer" instance=ExtResource( 9 )]
 position = Vector2( 1500, 854 )
+
+[node name="Spawn1" type="Position2D" parent="Forhindringer"]
+position = Vector2( 207, 207 )
+
+[node name="Spawn2" type="Position2D" parent="Forhindringer"]
+position = Vector2( 189, 680 )
+
+[node name="Spawn3" type="Position2D" parent="Forhindringer"]
+position = Vector2( 196, 895 )
+
+[node name="Spawn4" type="Position2D" parent="Forhindringer"]
+position = Vector2( 575, 861 )
+
+[node name="Spawn5" type="Position2D" parent="Forhindringer"]
+position = Vector2( 767, 448 )
+
+[node name="Spawn6" type="Position2D" parent="Forhindringer"]
+position = Vector2( 953, 574 )
+
+[node name="Spawn7" type="Position2D" parent="Forhindringer"]
+position = Vector2( 739, 928 )
+
+[node name="Spawn8" type="Position2D" parent="Forhindringer"]
+position = Vector2( 1339, 966 )
+
+[node name="Spawn9" type="Position2D" parent="Forhindringer"]
+position = Vector2( 1493, 782 )
+
+[node name="Spawn10" type="Position2D" parent="Forhindringer"]
+position = Vector2( 1433, 224 )
 
 [node name="Racerbil" type="RigidBody2D" parent="." groups=["Spiller"]]
 position = Vector2( 958, 193 )
